@@ -1,5 +1,6 @@
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.database.database import engine, Base
 
@@ -31,6 +32,19 @@ app = FastAPI(
     title="TraceSure API",
     description="Supply Chain Traceability and Product Recall Management System",
     version="1.0.0"
+)
+
+
+# Enable CORS for the React frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
