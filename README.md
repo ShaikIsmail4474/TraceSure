@@ -168,3 +168,304 @@ The backend MVP and its core API workflows have been implemented and manually te
 ## License
 
 This project is currently provided for evaluation and educational purposes.
+
+
+
+# TraceSure – Supply Chain Traceability & Product Recall Management System
+
+TraceSure is a full-stack web application designed to improve supply chain transparency, product traceability, shipment monitoring, and product recall management.
+
+The application helps organizations track products from suppliers through manufacturing batches and shipments, while providing recall information and audit records through a centralized dashboard.
+
+## Key Features
+
+### 1. Dashboard
+- Displays live supply chain statistics.
+- Shows product, supplier, batch, shipment, and recall counts.
+- Displays recent shipment and audit activity.
+- Provides recall monitoring information.
+
+### 2. Product Management
+- View registered products.
+- Track product names, SKUs, descriptions, and categories.
+- Search product records.
+
+### 3. Supplier Management
+- View supplier information.
+- Track contact persons, email addresses, phone numbers, and locations.
+- Search supplier records.
+
+### 4. Batch Management
+- Track manufacturing batches.
+- Associate batches with products and suppliers.
+- View manufacturing dates, expiry dates, quantities, and batch status.
+
+### 5. Shipment Tracking
+- Monitor shipments associated with batches.
+- Track origin, destination, carrier, and tracking number.
+- View shipment dates and delivery status.
+
+### 6. Product Recall Management
+- Create and track product recalls.
+- Associate recalls with affected batches.
+- Record recall reasons, severity, and status.
+
+### 7. Batch Traceability
+- Retrieve batch information.
+- Identify associated products and suppliers.
+- View related shipments and recalls.
+
+### 8. Recall Impact Analysis
+- Retrieve recall details and associated batch information.
+- Identify the affected product, supplier, and shipments.
+- Display an impact summary.
+
+### 9. Audit Logs
+- View recorded audit activities.
+- Track entity types, entity IDs, actions, descriptions, and timestamps.
+
+## Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, JavaScript |
+| Styling | CSS, Tailwind CSS |
+| Backend | Python, FastAPI |
+| Database | SQLite |
+| ORM | SQLAlchemy |
+| Validation | Pydantic |
+| API Communication | Axios |
+| Data Visualization | Recharts |
+| Icons | Lucide React |
+| API Documentation | Swagger UI |
+
+## System Architecture
+
+The application follows a frontend-backend architecture.
+
+1. The React frontend provides the user interface.
+2. Axios sends HTTP requests to the FastAPI backend.
+3. FastAPI processes requests through API routers.
+4. SQLAlchemy interacts with the SQLite database.
+5. The backend returns JSON responses to the frontend.
+
+## Project Structure
+
+```text
+TraceSure/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── database/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── main.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── tracesure.db
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── Products.jsx
+│   │   ├── Suppliers.jsx
+│   │   ├── Batches.jsx
+│   │   ├── Shipments.jsx
+│   │   ├── Recalls.jsx
+│   │   ├── Traceability.jsx
+│   │   ├── AuditLogs.jsx
+│   │   ├── api.js
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore
+└── README.md
+```
+
+## Installation and Setup
+
+### Prerequisites
+
+Install the following:
+
+- Python 3.10 or later
+- Node.js and npm
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ShaikIsmail4474/TraceSure.git
+cd TraceSure
+```
+
+### 2. Backend Setup
+
+Open a terminal:
+
+```bash
+cd backend
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate it on Windows Git Bash:
+
+```bash
+source venv/Scripts/activate
+```
+
+Or on Windows Command Prompt:
+
+```cmd
+venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the backend:
+
+```bash
+python -m uvicorn app.main:app --reload
+```
+
+Backend URL:
+
+http://127.0.0.1:8000
+
+### 3. API Documentation
+
+FastAPI provides interactive API documentation through Swagger UI.
+
+http://127.0.0.1:8000/docs
+
+Health check:
+
+http://127.0.0.1:8000/health
+
+### 4. Frontend Setup
+
+Open a separate terminal:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Frontend URL:
+
+http://localhost:5173
+
+### 5. Production Build
+
+To verify the frontend production build:
+
+```bash
+npm run build
+```
+
+## Main API Endpoints
+
+| Module | Endpoint |
+|---|---|
+| Products | `/products/` |
+| Suppliers | `/suppliers/` |
+| Batches | `/batches/` |
+| Shipments | `/shipments/` |
+| Recalls | `/recalls/` |
+| Batch Traceability | `/traceability/batches/{batch_id}` |
+| Recall Impact | `/recall-impact/{recall_id}` |
+| Audit Logs | `/audit-logs/` |
+| Health Check | `/health` |
+
+The backend provides CRUD operations for the main entity modules. Refer to Swagger UI for the complete endpoint list, request schemas, and response formats.
+
+## Database
+
+TraceSure currently uses SQLite with SQLAlchemy ORM.
+
+Main entities include:
+
+- Product
+- Supplier
+- Batch
+- Shipment
+- Recall
+- Audit Log
+
+Relationships connect products and suppliers to batches, batches to shipments, and batches to recalls.
+
+## Current Implementation Status
+
+The current version is a functional MVP with:
+
+- Backend API integration.
+- Database persistence.
+- Multiple sample records.
+- Dashboard statistics.
+- Eight frontend navigation modules.
+- Batch traceability and recall impact views.
+- Search and record viewing functionality.
+
+## Limitations
+
+The current MVP has some limitations:
+
+- Authentication and role-based authorization are not implemented.
+- Audit logs are manually recorded rather than automatically generated for every operation.
+- Audit log records can currently be deleted.
+- Recall impact analysis is based on the implemented recall-to-batch relationship and is not an advanced network analysis engine.
+- The frontend currently focuses primarily on viewing and searching records; complete CRUD workflows are not available through every frontend page.
+- SQLite is used for development and demonstration.
+
+## Future Enhancements
+
+- JWT-based authentication.
+- Role-based access for administrators and analysts.
+- Automated audit logging.
+- Advanced recall impact analysis.
+- Interactive supply chain relationship graphs.
+- Automated notifications for recalls and shipment updates.
+- Production database integration.
+- Automated testing and deployment.
+
+## Author
+
+**Shaik Ismail**
+
+GitHub: https://github.com/ShaikIsmail4474
+
+## Repository
+
+https://github.com/ShaikIsmail4474/TraceSure
+
+---
+
+**TraceSure – Improving Supply Chain Transparency, Traceability, and Product Safety.**
